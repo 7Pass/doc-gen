@@ -1,0 +1,46 @@
+{
+    "sections": [
+        {
+            "id": "general",
+            "questions": [
+                {
+                    "id": "lastname",
+                    "text": "Please state your last name"
+                },
+                {
+                    "id": "gender",
+                    "text": "Please state your gender",
+                    "choices": ["Male", "Female", "Diverse"]
+                }
+            ]
+        },
+        {
+            "id": "property",
+            "questions": [
+                {
+                    "id": "isOwner",
+                    "text": "Do you own a property?",
+                    "choices": [
+                        {
+                            "text": "Yes"
+                        },
+                        {
+                            "text": "No",
+                            "next": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "type",
+                    "text": "Type of property",
+                    "choices": [
+                        "Lot",
+                        "House standalone",
+                        "Semi-detached",
+                        "Flat"
+                    ]
+                }
+            ]
+        }
+    ]
+}
