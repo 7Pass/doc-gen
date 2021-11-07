@@ -1,8 +1,8 @@
 import Preact from "preact";
 import { useState } from "preact/hooks";
 
-import { IChoiceDispatcher } from "./output";
-import { IChoice, IQuestion, ISection } from "./flow/models";
+import { IChoiceDispatcher } from "../output";
+import { IChoice, IQuestion, ISection } from "../flow/models";
 
 export interface QuestionProps {
     section: ISection;
@@ -25,7 +25,7 @@ export const Question: Preact.FunctionComponent<QuestionProps> = ({
 
     return (
         <div>
-            <h1>{question.text}</h1>
+            <h3>{question.text}</h3>
             <Choices question={question} onChange={onChange} />
         </div>
     );
@@ -38,22 +38,12 @@ interface FreetextChoiceProps {
 const FreetextChoice: Preact.FunctionComponent<FreetextChoiceProps> = ({
     onChange,
 }) => {
-    const [value, setValue] = useState("");
-
     return (
-        <form
-            onSubmit={(e) => {
-                e.preventDefault();
-                onChange(value);
+        <input
+            onInput={(e) => {
+                onChange(e.currentTarget.value);
             }}
-        >
-            <input
-                value={value}
-                onInput={(e) => {
-                    setValue(e.currentTarget.value);
-                }}
-            />
-        </form>
+        />
     );
 };
 

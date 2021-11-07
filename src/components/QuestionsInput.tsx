@@ -1,6 +1,6 @@
 import Preact from "preact";
 
-import { IFlow, ISection } from "./flow/models";
+import { IFlow, ISection } from "../flow/models";
 import { readTextFromFile } from "./file-reader";
 
 export interface QuestionsInputProps {

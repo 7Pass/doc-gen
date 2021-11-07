@@ -1,8 +1,9 @@
 import Preact from "preact";
 
+import { ISection } from "../flow/models";
+import { IChoiceDispatcher } from "../output";
+
 import { Question } from "./Question";
-import { ISection } from "./flow/models";
-import { IChoiceDispatcher } from "./output";
 
 export interface SectionProps {
     section: ISection;

@@ -1,4 +1,4 @@
-import {Reducer, useReducer} from "preact/hooks";
+import {useReducer} from "preact/hooks";
 import {IChoice, IFlowOutput, IQuestion, ISection} from "./flow/models";
 
 export interface ChoiceArguments {

@@ -24,7 +24,7 @@ export const TemplateInput: Preact.FunctionComponent<TemplateInputProps> = ({
         <input
             type="file"
             name="template"
-            accept="*.md"
+            accept="*.liquid"
             onChange={(e) => readFileContent(e)}
         />
     );

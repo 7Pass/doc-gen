@@ -1,11 +1,12 @@
 import { useState } from "preact/hooks";
-import { ISection } from "./flow/models";
 
-import { Logo } from "./logo";
 import { Section } from "./Section";
+import { useOutput } from "../output";
+import { ISection } from "../flow/models";
+
+import { Output } from "./Output";
 import { TemplateInput } from "./TemplateInput";
 import { QuestionsInput } from "./QuestionsInput";
-import { useOutput } from "./output";
 
 export function App() {
     const [output, dispatch] = useOutput();
@@ -14,8 +15,7 @@ export function App() {
 
     return (
         <>
-            <Logo />
-            <p>Hello Vite + Preact!</p>
+            <p>Select questions and output template</p>
             <form>
                 <QuestionsInput onChange={setSections} />
                 <TemplateInput onChange={setTemplate} />
@@ -27,6 +27,7 @@ export function App() {
                     dispatch={dispatch}
                 />
             ))}
+            <Output template={template} output={output} />
         </>
     );
 }
