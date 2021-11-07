@@ -1,25 +1,42 @@
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 
-import { Section } from "./Section";
+import { ISection } from "../models";
 import { useOutput } from "../output";
-import { ISection } from "../flow/models";
 
 import { Output } from "./Output";
-import { TemplateInput } from "./TemplateInput";
-import { QuestionsInput } from "./QuestionsInput";
+import { Section } from "./Section";
+
+const DEFAULT_TEMPLATE = "example";
+
+function getTemplateId(): string {
+    const PREFIX = "?template=";
+    const search = location.search;
+
+    if (!search || !search.startsWith(PREFIX)) {
+        return DEFAULT_TEMPLATE;
+    }
+
+    return search.substring(PREFIX.length);
+}
 
 export function App() {
     const [output, dispatch] = useOutput();
     const [template, setTemplate] = useState("");
     const [sections, setSections] = useState<ISection[]>([]);
 
+    useEffect(() => {
+        const id = getTemplateId();
+
+        fetch(`templates/${id}/questions.json`)
+            .then((x) => x.json())
+            .then((x) => setSections(x.sections));
+        fetch(`templates/${id}/template.md`)
+            .then((x) => x.text())
+            .then(setTemplate);
+    }, []);
+
     return (
         <>
-            <p>Select questions and output template</p>
-            <form>
-                <QuestionsInput onChange={setSections} />
-                <TemplateInput onChange={setTemplate} />
-            </form>
             {sections.map((section) => (
                 <Section
                     key={section.id}

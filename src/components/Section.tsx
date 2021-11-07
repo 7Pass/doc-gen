@@ -1,6 +1,6 @@
 import Preact from "preact";
 
-import { ISection } from "../flow/models";
+import { ISection } from "../models";
 import { IChoiceDispatcher } from "../output";
 
 import { Question } from "./Question";

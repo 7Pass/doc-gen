@@ -3,7 +3,7 @@ import MarkdownIt from "markdown-it";
 import { Liquid, Template } from "liquidjs";
 import { useEffect, useState } from "preact/hooks";
 
-import { IFlowOutput } from "../flow/models";
+import { IFlowOutput } from "../models";
 
 export interface OutputProps {
     template: string;

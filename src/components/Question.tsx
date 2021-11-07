@@ -1,8 +1,7 @@
 import Preact from "preact";
-import { useState } from "preact/hooks";
 
 import { IChoiceDispatcher } from "../output";
-import { IChoice, IQuestion, ISection } from "../flow/models";
+import { IChoice, IQuestion, ISection } from "../models";
 
 export interface QuestionProps {
     section: ISection;
