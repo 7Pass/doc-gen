@@ -5,5 +5,5 @@ import preact from '@preact/preset-vite'
 export default defineConfig({
   plugins: [preact()],
   base: "/doc-gen/",
-  publicDir: "./docs",
+  publicDir: "./public",
 });
