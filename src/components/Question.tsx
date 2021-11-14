@@ -1,6 +1,6 @@
 import Preact from "preact";
 
-import { IChoiceDispatcher } from "../output";
+import { IChoiceDispatcher } from "./hooks";
 import { IChoice, IQuestion, ISection } from "../models";
 
 export interface QuestionProps {

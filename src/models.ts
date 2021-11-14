@@ -22,5 +22,9 @@ export interface ISection {
     questions: IQuestion[];
 }
 
+export interface IQuestionsFile {
+    sections: ISection[];
+}
+
 export type ISectionOutput = Record<string, string>;
 export type IFlowOutput = Record<string, ISectionOutput>;

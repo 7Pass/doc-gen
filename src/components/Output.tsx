@@ -6,7 +6,7 @@ import { useEffect, useState } from "preact/hooks";
 import { IFlowOutput } from "../models";
 
 export interface OutputProps {
-    template: string;
+    templateId: string;
     output: IFlowOutput;
 }
 
@@ -14,20 +14,24 @@ const liquid = new Liquid();
 const markdown = new MarkdownIt();
 
 export const Output: Preact.FunctionComponent<OutputProps> = ({
-    template,
+    templateId,
     output,
 }) => {
     const [html, setHtml] = useState("");
     const [parsed, setParsed] = useState<Template[]>([]);
 
     useEffect(() => {
-        if (!template) {
-            setParsed([]);
-            return;
-        }
+        fetch(`templates/${templateId}/template.md`)
+            .then((x) => x.text())
+            .then((template) => {
+                if (!template) {
+                    setParsed([]);
+                    return;
+                }
 
-        setParsed(liquid.parse(template));
-    }, [template]);
+                setParsed(liquid.parse(template));
+            });
+    }, []);
 
     useEffect(() => {
         if (!parsed.length) {
@@ -39,6 +43,10 @@ export const Output: Preact.FunctionComponent<OutputProps> = ({
             setHtml(markdown.render(md));
         });
     }, [parsed, output]);
+
+    if (!parsed.length) {
+        return <div>Loading...</div>;
+    }
 
     return <div dangerouslySetInnerHTML={{ __html: html }} />;
 };

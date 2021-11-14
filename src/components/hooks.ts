@@ -1,5 +1,5 @@
 import {useReducer} from "preact/hooks";
-import {IChoice, IFlowOutput, IQuestion, ISection} from "./models";
+import {IChoice, IFlowOutput, IQuestion, ISection} from "../models";
 
 export interface ChoiceArguments {
     choice: IChoice;
