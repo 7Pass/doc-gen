@@ -21,6 +21,10 @@ export const Output: Preact.FunctionComponent<OutputProps> = ({
     const [parsed, setParsed] = useState<Template[]>([]);
 
     useEffect(() => {
+        import("gutenberg-css/dist/gutenberg.min.css").then((url) => {
+            document.head.innerHTML += `<link rel="stylesheet" href="${url}" type="text/css"/>`;
+        });
+
         fetch(`templates/${templateId}/template.md`)
             .then((x) => x.text())
             .then((template) => {
@@ -39,9 +43,12 @@ export const Output: Preact.FunctionComponent<OutputProps> = ({
             return;
         }
 
-        liquid.render(parsed, output).then((md) => {
-            setHtml(markdown.render(md));
-        });
+        liquid
+            .render(parsed, output)
+            .then((md) => {
+                setHtml(markdown.render(md));
+            })
+            .then(() => window.print());
     }, [parsed, output]);
 
     if (!parsed.length) {
