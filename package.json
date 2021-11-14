@@ -10,6 +10,7 @@
     "gutenberg-css": "^0.6.1",
     "liquidjs": "^9.28.5",
     "markdown-it": "^12.2.0",
+    "milligram": "^1.4.1",
     "preact": "^10.5.13"
   },
   "devDependencies": {

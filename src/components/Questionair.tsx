@@ -17,14 +17,20 @@ export const Questionair: Preact.FunctionComponent<QuestionairProps> = ({
     onComplete,
 }) => {
     const [output, dispatch] = useOutput();
+    const [title, setTitle] = useState("");
     const [sections, setSections] = useState<ISection[]>([]);
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
     useEffect(() => {
         setCurrentSectionIndex(0);
+        import("milligram/dist/milligram.min.css");
+
         fetch(`templates/${templateId}/questions.json`)
             .then((x) => x.json())
-            .then((x) => setSections(x.sections));
+            .then((x) => {
+                setTitle(x.title);
+                setSections(x.sections);
+            });
     }, []);
 
     const section = sections[currentSectionIndex];
@@ -61,14 +67,21 @@ export const Questionair: Preact.FunctionComponent<QuestionairProps> = ({
     };
 
     return (
-        <Section
-            output={output}
-            section={section}
-            dispatch={dispatch}
-            showNext={currentSectionIndex < sections.length - 1}
-            showPrevious={currentSectionIndex > 0}
-            onNext={goNext}
-            onPrevious={() => setCurrentSectionIndex(currentSectionIndex - 1)}
-        />
+        <div class="container">
+            <h1>{title}</h1>
+            <hr />
+
+            <Section
+                output={output}
+                section={section}
+                dispatch={dispatch}
+                showNext={currentSectionIndex < sections.length - 1}
+                showPrevious={currentSectionIndex > 0}
+                onNext={goNext}
+                onPrevious={() =>
+                    setCurrentSectionIndex(currentSectionIndex - 1)
+                }
+            />
+        </div>
     );
 };

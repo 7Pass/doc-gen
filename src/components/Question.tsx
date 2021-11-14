@@ -74,7 +74,9 @@ const Choice: Preact.FunctionComponent<ChoiceProps> = ({
                     });
                 }}
             />
-            <label for={choice.text}>{choice.text}</label>
+            <label class="label-inline" for={choice.text}>
+                {choice.text}
+            </label>
         </div>
     );
 };

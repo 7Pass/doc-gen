@@ -48,14 +48,35 @@ export const Section: Preact.FunctionComponent<SectionProps> = ({
     return (
         <div>
             <div>{questions}</div>
-            {props.showPrevious && (
-                <button type="button" onClick={props.onPrevious}>
+            <div>
+                <button
+                    type="button"
+                    class="button button-outline"
+                    onClick={props.onPrevious}
+                    disabled={!props.showPrevious}
+                >
                     Previous
+                </button>{" "}
+                <button
+                    type="button"
+                    class="button button-outline"
+                    onClick={props.onNext}
+                    disabled={!props.showNext}
+                >
+                    Next
                 </button>
-            )}
-            <button type="button" onClick={props.onNext}>
-                {props.showNext ? "Next" : "Complete"}
-            </button>
+                {!props.showNext && (
+                    <div class="float-right">
+                        <button
+                            type="button"
+                            class="button"
+                            onClick={props.onNext}
+                        >
+                            Complete
+                        </button>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
