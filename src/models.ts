@@ -22,10 +22,5 @@ export interface ISection {
     questions: IQuestion[];
 }
 
-export interface IFlow {
-    template: string;
-    sections: ISection[];
-}
-
 export type ISectionOutput = Record<string, string>;
 export type IFlowOutput = Record<string, ISectionOutput>;

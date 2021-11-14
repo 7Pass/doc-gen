@@ -1,8 +1,7 @@
 import Preact from "preact";
-import { useState } from "preact/hooks";
 
-import { IChoiceDispatcher } from "../output";
-import { IChoice, IQuestion, ISection } from "../flow/models";
+import { IChoiceDispatcher } from "./hooks";
+import { IChoice, IQuestion, ISection } from "../models";
 
 export interface QuestionProps {
     section: ISection;
@@ -75,7 +74,9 @@ const Choice: Preact.FunctionComponent<ChoiceProps> = ({
                     });
                 }}
             />
-            <label for={choice.text}>{choice.text}</label>
+            <label class="label-inline" for={choice.text}>
+                {choice.text}
+            </label>
         </div>
     );
 };
